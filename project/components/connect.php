@@ -1,7 +1,7 @@
 <?php
 
    // Definición de las credenciales de conexión a la base de datos
-   $db_name = 'mysql:host=localhost;port=3307;dbname=shop_db';  // Especifica el host (localhost), el puerto (3307) y el nombre de la base de datos (shop_db)
+   $db_name = 'mysql:host=localhost;port=3306;dbname=shop_db';  // Especifica el host (localhost), el puerto (3307) y el nombre de la base de datos (shop_db)
    $db_user_name = 'root';   // Nombre de usuario de la base de datos
    $db_user_pass = '';       // Contraseña del usuario de la base de datos
 

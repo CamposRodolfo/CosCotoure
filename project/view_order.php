@@ -64,7 +64,7 @@ if(isset($_POST['cancel'])){
    <div class="box">
       <div class="col">
          <p class="title"><i class="fas fa-calendar"></i><?= $fetch_order['date']; ?></p>
-         <img src="uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
+         <img src="../project_assets/uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
          <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_order['price']; ?> x <?= $fetch_order['qty']; ?></p>
          <h3 class="name"><?= $fetch_product['name']; ?></h3>
          <p class="grand-total">total : <span><i class="fas fa-dollar-sign"></i> <?= $grand_total; ?></span></p>

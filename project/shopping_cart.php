@@ -95,7 +95,7 @@ if(isset($_POST['empty_cart'])){
    ?>
    <form action="" method="POST" class="box">
       <input type="hidden" name="cart_id" value="<?= $fetch_cart['id']; ?>">
-      <img src="uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
+      <img src="../project_assets/uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
       <h3 class="name"><?= $fetch_product['name']; ?></h3>
       <div class="flex">
          <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_cart['price']; ?></p>

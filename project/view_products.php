@@ -71,7 +71,7 @@ if(isset($_POST['add_to_cart'])){
          while($fetch_prodcut = $select_products->fetch(PDO::FETCH_ASSOC)){
    ?>
    <form action="" method="POST" class="box">
-      <img src="uploaded_files/<?= $fetch_prodcut['image']; ?>" class="image" alt="">
+      <img src="../project_assets/uploaded_files/<?= $fetch_prodcut['image']; ?>" class="image" alt="">
       <h3 class="name"><?= $fetch_prodcut['name'] ?></h3>
       <input type="hidden" name="product_id" value="<?= $fetch_prodcut['id']; ?>">
       <div class="flex">

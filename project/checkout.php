@@ -138,7 +138,7 @@ if(isset($_POST['place_order'])){
                while($fetch_get = $select_get->fetch(PDO::FETCH_ASSOC)){
          ?>
          <div class="flex">
-            <img src="uploaded_files/<?= $fetch_get['image']; ?>" class="image" alt="">
+            <img src="../project_assets/uploaded_files/<?= $fetch_get['image']; ?>" class="image" alt="">
             <div>
                <h3 class="name"><?= $fetch_get['name']; ?></h3>
                <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_get['price']; ?> x 1</p>
@@ -160,7 +160,7 @@ if(isset($_POST['place_order'])){
             
          ?>
          <div class="flex">
-            <img src="uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
+            <img src="../project_assets/uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
             <div>
                <h3 class="name"><?= $fetch_product['name']; ?></h3>
                <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_product['price']; ?> x <?= $fetch_cart['qty']; ?></p>
