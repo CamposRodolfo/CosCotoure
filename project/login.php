@@ -14,7 +14,7 @@
     <div class="container" id="container">
         <!-- Formulario de Registro -->
         <div class="form-container sign-up">
-            <form action="register.php" method="POST">
+            <form action="../register.php" method="POST">
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -32,7 +32,7 @@
 
         <!-- Formulario de Inicio de Sesión -->
         <div class="form-container sign-in">
-            <form action="login.php" method="POST">
+            <form action="../login.php" method="POST">
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
