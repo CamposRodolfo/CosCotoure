@@ -6,7 +6,12 @@
    $db_user_pass = '';       // Contraseña del usuario de la base de datos
 
    // Creación de una instancia PDO para conectar con la base de datos MySQL
-   $conn = new PDO($db_name, $db_user_name, $db_user_pass);
+   try {
+       $conn = new PDO($db_name, $db_user_name, $db_user_pass);
+       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   } catch (PDOException $e) {
+       die("Error al conectar con la base de datos: " . $e->getMessage());
+   }
 
    // Definición de una función para generar un ID único de 20 caracteres aleatorios
    function create_unique_id(){
