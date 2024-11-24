@@ -1,672 +1,759 @@
 /* Importación de Fuentes y Variables CSS */
 /* Importación de fuente Montserrat: Importa la fuente Montserrat desde Google Fonts en varios pesos, lo que permite tener opciones de grosor en el texto */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap');
-
-
-
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400&display=swap");
 
 /* Variables CSS y Configuración Global */
 /* Declaración de variables CSS que centralizan los colores y estilos usados en el diseño, permitiendo fácil mantenimiento y cambios */
 :root {
-   --main-color: #2980b9;           /* Color principal de la interfaz para acentos */
-   --red: #e74c3c;                  /* Color rojo utilizado para advertencias o botones de eliminación */
-   --orange: #f39c12;               /* Color naranja, generalmente para iconos de edición */
-   --light-color: #666;             /* Color para texto secundario */
-   --light-bg: #eee;                /* Fondo claro para áreas de contenido */
-   --white: #fff;                   /* Blanco para fondo de elementos y texto */
-   --black: #2c3e50;                /* Negro principal para texto */
-   --border: .1rem solid rgba(0,0,0,.3);   /* Estilo de borde con transparencia */
-   --box-shadow: 0 .5rem 1rem rgba(0,0,0,.1); /* Sombra ligera para dar profundidad a los elementos */
+  --main-color: #64c588;
+  /* Color principal de la interfaz para acentos */
+  --red: #e74c3c;
+  /* Color rojo utilizado para advertencias o botones de eliminación */
+  --orange: #f39c12;
+  /* Color naranja, generalmente para iconos de edición */
+  --light-color: #666;
+  /* Color para texto secundario */
+  --light-bg: #eee;
+  /* Fondo claro para áreas de contenido */
+  --white: #fff;
+  /* Blanco para fondo de elementos y texto */
+  --black: #4ca0b5;
+  /* Negro principal para texto */
+  --border: 0.1rem solid rgba(0, 0, 0, 0.3);
+  /* Estilo de borde con transparencia */
+  --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  /* Sombra ligera para dar profundidad a los elementos */
 }
-
-
 
 /* Estilos globales aplicados a todos los elementos para garantizar una apariencia uniforme */
 /* Aplica la fuente Montserrat en toda la página, elimina márgenes y rellenos por defecto y asegura que el tamaño de los elementos se ajuste correctamente */
 * {
-   font-family: 'Montserrat', sans-serif;
-   margin: 0; padding: 0;
-   box-sizing: border-box;
-   outline: none; border: none;
-   text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
 }
-
-
-
-
 
 /* Efectos de Selección y Scroll */
 /* Personalización del efecto de selección: cuando el usuario selecciona texto, se aplica un fondo azul y texto blanco */
 *::selection {
-   background-color: var(--main-color);
-   color: var(--white);
+  background-color: var(--main-color);
+  color: var(--white);
 }
 
 /* Estilo personalizado para la barra de desplazamiento en navegadores basados en WebKit */
 *::-webkit-scrollbar {
-   height: .5rem;                   /* Altura de la barra horizontal */
-   width: 1rem;                     /* Ancho de la barra vertical */
+  height: 0.5rem;
+  /* Altura de la barra horizontal */
+  width: 1rem;
+  /* Ancho de la barra vertical */
 }
+
 *::-webkit-scrollbar-track {
-   background-color: transparent;    /* Fondo de la pista del scrollbar transparente */
+  background-color: transparent;
+  /* Fondo de la pista del scrollbar transparente */
 }
+
 *::-webkit-scrollbar-thumb {
-   background-color: var(--main-color); /* Color del pulgar del scrollbar */
+  background-color: var(--main-color);
+  /* Color del pulgar del scrollbar */
 }
-
-
-
-
 
 /* Estilo base del HTML: ajusta el tamaño de fuente a 62.5% para que 1rem equivalga a 10px, facilitando el cálculo de tamaños */
 html {
-   font-size: 62.5%;
-   overflow-x: hidden;              /* Evita el desplazamiento horizontal */
+  font-size: 62.5%;
+  overflow-x: hidden;
+  /* Evita el desplazamiento horizontal */
 }
 
 /* Estilo de fondo para el body, se usa el color de fondo claro */
 body {
-   background: var(--light-bg);
+  background: var(--light-bg);
 }
 
 /* Estructura de las secciones generales */
 section {
-   padding: 2.5rem 2rem;            /* Espaciado interno alrededor de la sección */
-   max-width: 1200px;               /* Ancho máximo de la sección */
-   margin: 0 auto;                  /* Centra la sección en la página */
+  padding: 2.5rem 2rem;
+  /* Espaciado interno alrededor de la sección */
+  max-width: 1200px;
+  /* Ancho máximo de la sección */
+  margin: 0 auto;
+  /* Centra la sección en la página */
 }
 
 /* Estilo de encabezados principales para títulos de secciones */
 .heading {
-   text-align: center;              /* Centra el texto del encabezado */
-   padding-bottom: 2.5rem;          /* Espacio inferior */
-   font-size: 3rem;                 /* Tamaño de fuente grande */
-   color: var(--black);             /* Color de texto negro */
-   text-transform: capitalize;      /* Primera letra en mayúscula */
+  text-align: center;
+  /* Centra el texto del encabezado */
+  padding-bottom: 2.5rem;
+  /* Espacio inferior */
+  font-size: 3rem;
+  /* Tamaño de fuente grande */
+  color: var(--black);
+  /* Color de texto negro */
+  text-transform: capitalize;
+  /* Primera letra en mayúscula */
 }
 
 /* Estilo para mensajes vacíos o de alerta, generalmente para indicar falta de contenido */
 .empty {
-   width: 100%;                     /* Ancho completo */
-   background-color: var(--white);   /* Fondo blanco */
-   padding: 1.5rem;                 /* Espaciado interno */
-   text-align: center;              /* Centra el texto */
-   font-size: 2rem;                 /* Tamaño de fuente grande */
-   color: var(--red);               /* Texto en rojo */
-   border-radius: .5rem;            /* Bordes redondeados */
-   text-transform: capitalize;      /* Primera letra en mayúscula */
-   box-shadow: var(--box-shadow);   /* Sombra para dar profundidad */
-   border: var(--border);           /* Borde ligero alrededor */
+  width: 100%;
+  /* Ancho completo */
+  background-color: var(--white);
+  /* Fondo blanco */
+  padding: 1.5rem;
+  /* Espaciado interno */
+  text-align: center;
+  /* Centra el texto */
+  font-size: 2rem;
+  /* Tamaño de fuente grande */
+  color: var(--red);
+  /* Texto en rojo */
+  border-radius: 0.5rem;
+  /* Bordes redondeados */
+  text-transform: capitalize;
+  /* Primera letra en mayúscula */
+  box-shadow: var(--box-shadow);
+  /* Sombra para dar profundidad */
+  border: var(--border);
+  /* Borde ligero alrededor */
 }
 
 /* Estilo base para botones */
-.btn, .delete-btn {
-   display: block;                  /* Botones en bloque, ocupan todo el ancho */
-   text-align: center;              /* Centra el texto del botón */
-   width: 100%;                     /* Ancho completo */
-   margin-top: 1rem;                /* Margen superior */
-   padding: 1rem 3rem;              /* Espaciado interno */
-   color: var(--white);             /* Texto en blanco */
-   cursor: pointer;                 /* Cambia el cursor a "pointer" */
-   font-size: 1.8rem;               /* Tamaño de fuente grande */
-   text-transform: capitalize;      /* Primera letra en mayúscula */
-   border-radius: .5rem;            /* Bordes redondeados */
+.btn,
+.delete-btn {
+  display: block;
+  /* Botones en bloque, ocupan todo el ancho */
+  text-align: center;
+  /* Centra el texto del botón */
+  width: 100%;
+  /* Ancho completo */
+  margin-top: 1rem;
+  /* Margen superior */
+  padding: 1rem 3rem;
+  /* Espaciado interno */
+  color: var(--white);
+  /* Texto en blanco */
+  cursor: pointer;
+  /* Cambia el cursor a "pointer" */
+  font-size: 1.8rem;
+  /* Tamaño de fuente grande */
+  text-transform: capitalize;
+  /* Primera letra en mayúscula */
+  border-radius: 0.5rem;
+  /* Bordes redondeados */
 }
 
 /* Estilos específicos para botón normal (azul) y de eliminación (rojo) */
 .btn {
-   background-color: var(--main-color);
+  background-color: var(--main-color);
 }
+
 .delete-btn {
-   background-color: var(--red);
+  background-color: var(--red);
 }
 
 /* Efecto hover para los botones, cambia el fondo a negro */
-.btn:hover, .delete-btn:hover {
-   background-color: var(--black);
+.btn:hover,
+.delete-btn:hover {
+  background-color: var(--black);
 }
 
 /* Estilo para el encabezado de la página, fijado en la parte superior con sombra */
 .header {
-   position: sticky;                /* El encabezado permanece visible al hacer scroll */
-   top: 0;                          /* Fijado en la parte superior */
-   z-index: 1000;                   /* Capa superior para asegurar visibilidad */
-   box-shadow: var(--box-shadow);   /* Sombra para dar profundidad */
-   background-color: var(--black);  /* Fondo negro */
+  position: sticky;
+  /* El encabezado permanece visible al hacer scroll */
+  top: 0;
+  /* Fijado en la parte superior */
+  z-index: 1000;
+  /* Capa superior para asegurar visibilidad */
+  box-shadow: var(--box-shadow);
+  /* Sombra para dar profundidad */
+  background-color: var(--black);
+  /* Fondo negro */
 }
 
 /* Configuración de diseño flexible en el encabezado para distribuir logotipo, menú y otros elementos */
 .header .flex {
-   display: flex;
-   align-items: center;
-   justify-content: space-between;  /* Distribuye elementos con espacio entre ellos */
-   gap: 1.5rem;                     /* Espacio entre los elementos */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Distribuye elementos con espacio entre ellos */
+  gap: 1.5rem;
+  /* Espacio entre los elementos */
 }
 
 /* Estilo para el logotipo en el encabezado */
 .header .flex .logo {
-   font-size: 2.5rem;               /* Tamaño de fuente grande */
-   color: var(--white);             /* Color blanco para el logotipo */
+  font-size: 2.5rem;
+  /* Tamaño de fuente grande */
+  color: var(--white);
+  /* Color blanco para el logotipo */
 }
 
 /* Estilo para los enlaces del menú en el encabezado */
 .header .flex .navbar a {
-   color: var(--white);             /* Texto en blanco */
-   margin-left: 2rem;               /* Margen izquierdo */
-   font-size: 1.8rem;               /* Tamaño de fuente */
-   text-transform: capitalize;      /* Primera letra en mayúscula */
+  color: var(--white);
+  /* Texto en blanco */
+  margin-left: 2rem;
+  /* Margen izquierdo */
+  font-size: 1.8rem;
+  /* Tamaño de fuente */
+  text-transform: capitalize;
+  /* Primera letra en mayúscula */
 }
 
 /* Efecto de subrayado para los enlaces del menú al pasar el cursor */
 .header .flex .navbar a:hover {
-   text-decoration: underline;
+  text-decoration: underline;
 }
 
 /* Estilo de contenedor de ícono en los enlaces del carrito */
 .header .flex .navbar a span {
-   margin-left: 1rem;
-   padding: .3rem .7rem;            /* Espaciado interno para hacer que el ícono se vea como una etiqueta */
-   background-color: var(--white);  /* Fondo blanco */
-   color: var(--black);             /* Texto negro */
-   border-radius: .5rem;            /* Bordes redondeados */
+  margin-left: 1rem;
+  padding: 0.3rem 0.7rem;
+  /* Espaciado interno para hacer que el ícono se vea como una etiqueta */
+  background-color: var(--white);
+  /* Fondo blanco */
+  color: var(--black);
+  /* Texto negro */
+  border-radius: 0.5rem;
+  /* Bordes redondeados */
 }
 
 /* Estilo para el botón de menú en dispositivos móviles */
 #menu-btn {
-   font-size: 2.5rem;               /* Tamaño de fuente para el icono */
-   color: var(--white);             /* Color del icono en blanco */
-   display: none;                   /* Oculto por defecto */
+  font-size: 2.5rem;
+  /* Tamaño de fuente para el icono */
+  color: var(--white);
+  /* Color del icono en blanco */
+  display: none;
+  /* Oculto por defecto */
 }
 
 /* Estilo para el contenedor del formulario de producto */
 .product-form {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   min-height: calc(100vh - 15rem); /* Mínimo alto del formulario para ocupar casi toda la pantalla */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 15rem);
+  /* Mínimo alto del formulario para ocupar casi toda la pantalla */
 }
 
 /* Estilos de formulario para agregar productos */
 .product-form form {
-   border: var(--border);           /* Borde ligero alrededor */
-   border-radius: .5rem;            /* Bordes redondeados */
-   padding: 2rem;                   /* Espaciado interno */
-   width: 50rem;                    /* Ancho fijo */
-   background-color: var(--white);  /* Fondo blanco */
-   box-shadow: var(--box-shadow);   /* Sombra para profundidad */
+  border: var(--border);
+  /* Borde ligero alrededor */
+  border-radius: 0.5rem;
+  /* Bordes redondeados */
+  padding: 2rem;
+  /* Espaciado interno */
+  width: 50rem;
+  /* Ancho fijo */
+  background-color: var(--white);
+  /* Fondo blanco */
+  box-shadow: var(--box-shadow);
+  /* Sombra para profundidad */
 }
 
 /* Título dentro del formulario de productos */
 .product-form form h3 {
-   padding-bottom: 1rem;            /* Espacio inferior */
-   font-size: 2.5rem;               /* Tamaño de fuente grande */
-   color: var(--black);             /* Texto negro */
-   text-transform: capitalize;
-   text-align: center;              /* Centra el texto */
+  padding-bottom: 1rem;
+  /* Espacio inferior */
+  font-size: 2.5rem;
+  /* Tamaño de fuente grande */
+  color: var(--black);
+  /* Texto negro */
+  text-transform: capitalize;
+  text-align: center;
+  /* Centra el texto */
 }
 
 /* Estilos de párrafos dentro del formulario */
 .product-form form p {
-   padding-top: 1rem;               /* Espacio superior */
-   font-size: 1.7rem;               /* Tamaño de fuente */
-   color: var(--light-color);       /* Color de texto claro */
+  padding-top: 1rem;
+  /* Espacio superior */
+  font-size: 1.7rem;
+  /* Tamaño de fuente */
+  color: var(--light-color);
+  /* Color de texto claro */
 }
+
 .product-form form p span {
-   color: red;                      /* Texto en rojo */
+  color: red;
+  /* Texto en rojo */
 }
 
 /* Caja de entrada de datos dentro del formulario de productos */
 .product-form form .box {
-   width: 100%;                     /* Ocupa todo el ancho */
-   border-radius: .5rem;            /* Bordes redondeados */
-   background-color: var(--light-bg); /* Fondo claro */
-   margin: 1rem 0;                  /* Margen vertical */
-   font-size: 1.8rem;               /* Tamaño de fuente */
-   color: var(--black);             /* Texto negro */
-   padding: 1.4rem;                 /* Espaciado interno */
+  width: 100%;
+  /* Ocupa todo el ancho */
+  border-radius: 0.5rem;
+  /* Bordes redondeados */
+  background-color: var(--light-bg);
+  /* Fondo claro */
+  margin: 1rem 0;
+  /* Margen vertical */
+  font-size: 1.8rem;
+  /* Tamaño de fuente */
+  color: var(--black);
+  /* Texto negro */
+  padding: 1.4rem;
+  /* Espaciado interno */
 }
 
 /* Contenedor de productos, usa un diseño de cuadrícula */
 .products .box-container {
-   display: grid;                   /* Usa cuadrícula */
-   grid-template-columns: repeat(auto-fit, 35rem); /* Columnas adaptables con ancho fijo */
-   align-items: flex-start;         /* Alineación superior */
-   justify-content: center;         /* Centrado horizontal */
-   gap: 1.5rem;                     /* Espacio entre cajas */
+  display: grid;
+  /* Usa cuadrícula */
+  grid-template-columns: repeat(auto-fit, 35rem);
+  /* Columnas adaptables con ancho fijo */
+  align-items: flex-start;
+  /* Alineación superior */
+  justify-content: center;
+  /* Centrado horizontal */
+  gap: 1.5rem;
+  /* Espacio entre cajas */
 }
 
 /* Estilo de cajas individuales para cada producto */
 .products .box-container .box {
-   border: var(--border);           /* Borde de la caja */
-   box-shadow: var(--box-shadow);   /* Sombra para dar profundidad */
-   background-color: var(--white);  /* Fondo blanco */
-   padding: 2rem;                   /* Espaciado interno */
-   border-radius: .5rem;            /* Bordes redondeados */
+  border: var(--border);
+  /* Borde de la caja */
+  box-shadow: var(--box-shadow);
+  /* Sombra para dar profundidad */
+  background-color: var(--white);
+  /* Fondo blanco */
+  padding: 2rem;
+  /* Espaciado interno */
+  border-radius: 0.5rem;
+  /* Bordes redondeados */
 }
 
 /* Imagen dentro de cada caja de producto */
 .products .box-container .box .image {
-   height: 20rem;                   /* Altura fija */
-   width: 100%;                     /* Ancho completo */
-   object-fit: contain;             /* Escala la imagen */
-   margin-bottom: 2rem;             /* Espacio inferior */
+  height: 20rem;
+  /* Altura fija */
+  width: 100%;
+  /* Ancho completo */
+  object-fit: contain;
+  /* Escala la imagen */
+  margin-bottom: 2rem;
+  /* Espacio inferior */
 }
 
 /* Nombre del producto */
 .products .box-container .box .name {
-   font-size: 2rem;                 /* Tamaño de fuente grande */
-   color: var(--black);             /* Texto en negro */
+  font-size: 2rem;
+  /* Tamaño de fuente grande */
+  color: var(--black);
+  /* Texto en negro */
 }
 
-.products .box-container .box .flex{
-   padding-bottom: 1rem;
-   display: flex;
-   gap: 1rem;
-   align-items: flex-end;
+.products .box-container .box .flex {
+  padding-bottom: 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
 }
 
-.products .box-container .box .price{
-   font-size: 1.7rem;
-   color: var(--red);
-   margin-right: auto;
-}  
-
-.products .box-container .box .flex .qty{
-   border: var(--border);
-   border-radius: .5rem;
-   padding:.5rem 1rem;
-   width:6.5rem;
-   font-size: 1.8rem;
-   color: var(--black);
+.products .box-container .box .price {
+  font-size: 1.7rem;
+  color: var(--red);
+  margin-right: auto;
 }
 
-.products .box-container .box .flex .fa-edit{
-   background-color: var(--orange);
-   border-radius: .5rem;
-   font-size: 1.7rem;
-   color: var(--white);   
-   height: 3.5rem;
-   width: 4.5rem;
-   cursor: pointer;
+.products .box-container .box .flex .qty {
+  border: var(--border);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  width: 6.5rem;
+  font-size: 1.8rem;
+  color: var(--black);
 }
 
-.products .box-container .box .flex .fa-edit:hover{
-   background-color: var(--black);
+.products .box-container .box .flex .fa-edit {
+  background-color: var(--orange);
+  border-radius: 0.5rem;
+  font-size: 1.7rem;
+  color: var(--white);
+  height: 3.5rem;
+  width: 4.5rem;
+  cursor: pointer;
 }
 
-.products .box-container .box .sub-total{
-   padding-bottom: 1rem;
-   font-size: 1.7rem;
-   color: var(--light-color);
+.products .box-container .box .flex .fa-edit:hover {
+  background-color: var(--black);
 }
 
-.products .box-container .box .sub-total span{
-   color: var(--red);
+.products .box-container .box .sub-total {
+  padding-bottom: 1rem;
+  font-size: 1.7rem;
+  color: var(--light-color);
 }
 
-.products .cart-total{
-   max-width: 40rem;
-   margin: 0 auto;
-   background-color: var(--white);
-   margin-top: 2rem;
-   border-radius: .5rem;
-   border: var(--border);
-   padding: 2rem;
-   box-shadow: var(--box-shodow);
+.products .box-container .box .sub-total span {
+  color: var(--red);
 }
 
-.products .cart-total p{
-   padding-bottom: 1rem;
-   font-size: 2rem;
-   color: var(--light-color);
+.products .cart-total {
+  max-width: 40rem;
+  margin: 0 auto;
+  background-color: var(--white);
+  margin-top: 2rem;
+  border-radius: 0.5rem;
+  border: var(--border);
+  padding: 2rem;
+  box-shadow: var(--box-shodow);
 }
 
-.products .cart-total p span{
-   color: var(--red);
+.products .cart-total p {
+  padding-bottom: 1rem;
+  font-size: 2rem;
+  color: var(--light-color);
 }
 
-.checkout .row{
-   display: flex;
-   flex-wrap: wrap;
-   gap: 2rem;
-   align-items: flex-end;
-   flex-wrap: wrap-reverse;
+.products .cart-total p span {
+  color: var(--red);
 }
 
-.checkout .row form{
-   flex: 1 1 50rem;
-   background-color: var(--white);
-   box-shadow: var(--box-shodow);
-   padding: 2rem;
-   border-radius: .5rem;
-   border: var(--border);
+.checkout .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-end;
+  flex-wrap: wrap-reverse;
 }
 
-.checkout .row form h3{
-   font-size: 2.5rem;
-   color: var(--black);
-   padding-bottom: 1rem;
-   text-align: center;
-   text-transform: capitalize;
+.checkout .row form {
+  flex: 1 1 50rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shodow);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: var(--border);
 }
 
-.checkout .row form .input{
-   width: 100%;
-   background-color: var(--light-bg);
-   border-radius: .5rem;
-   padding: 1.4rem;
-   color: var(--black);
-   font-size: 1.8rem;
-   margin: 1rem 0;
+.checkout .row form h3 {
+  font-size: 2.5rem;
+  color: var(--black);
+  padding-bottom: 1rem;
+  text-align: center;
+  text-transform: capitalize;
 }
 
-.checkout .row form .flex{
-   display: flex;
-   column-gap: 1.5rem;
-   flex-wrap: wrap;
+.checkout .row form .input {
+  width: 100%;
+  background-color: var(--light-bg);
+  border-radius: 0.5rem;
+  padding: 1.4rem;
+  color: var(--black);
+  font-size: 1.8rem;
+  margin: 1rem 0;
 }
 
-.checkout .row form .flex .box{
-   flex: 1 1 30rem;
+.checkout .row form .flex {
+  display: flex;
+  column-gap: 1.5rem;
+  flex-wrap: wrap;
 }
 
-.checkout .row form p{
-   padding-top: 1rem;
-   font-size: 1.6rem;
-   color: var(--light-color);
+.checkout .row form .flex .box {
+  flex: 1 1 30rem;
 }
 
-.checkout .row form p span{
-   color: var(--red);
+.checkout .row form p {
+  padding-top: 1rem;
+  font-size: 1.6rem;
+  color: var(--light-color);
 }
 
-.checkout .row form textarea{
-   height: 15rem;
-   resize: none;
+.checkout .row form p span {
+  color: var(--red);
 }
 
-.checkout .row .summary{
-   background-color: var(--white);
-   box-shadow: var(--box-shodow);
-   padding: 2rem;
-   border-radius: .5rem;
-   border: var(--border);
-   flex: 1 1 30rem;
+.checkout .row form textarea {
+  height: 15rem;
+  resize: none;
 }
 
-.checkout .row .summary .title{
-   font-size: 2.2rem;
-   color: var(--black);
-   border-bottom: var(--border);
-   margin-bottom: .5rem;
-   text-transform: capitalize;
-   padding-bottom: 1.5rem;
+.checkout .row .summary {
+  background-color: var(--white);
+  box-shadow: var(--box-shodow);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: var(--border);
+  flex: 1 1 30rem;
 }
 
-.checkout .row .summary .flex{
-   display: flex;
-   align-items: center;
-   gap: 1.5rem;
-   padding: 1rem 0;
+.checkout .row .summary .title {
+  font-size: 2.2rem;
+  color: var(--black);
+  border-bottom: var(--border);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  padding-bottom: 1.5rem;
 }
 
-.checkout .row .summary .flex img{
-   height: 6rem;
-   width: 6rem;
-   object-fit: contain;
+.checkout .row .summary .flex {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 0;
 }
 
-.checkout .row .summary .flex .name{
-   font-size: 1.8rem;
-   color: var(--black);
-   padding-bottom: .5rem;
+.checkout .row .summary .flex img {
+  height: 6rem;
+  width: 6rem;
+  object-fit: contain;
 }
 
-.checkout .row .summary .flex .price{
-   font-size: 1.6rem;
-   color: var(--red);
+.checkout .row .summary .flex .name {
+  font-size: 1.8rem;
+  color: var(--black);
+  padding-bottom: 0.5rem;
 }
 
-.checkout .row .summary .grand-total{
-   background-color: var(--light-bg);
-   border-radius: .5rem;
-   padding: 1.5rem 2rem;
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   gap: 1.5rem;
-   flex-wrap: wrap;
-   font-size: 2rem;
-   margin-top: 1.5rem;
+.checkout .row .summary .flex .price {
+  font-size: 1.6rem;
+  color: var(--red);
 }
 
-.checkout .row .summary .grand-total span{
-   color: var(--light-color);
+.checkout .row .summary .grand-total {
+  background-color: var(--light-bg);
+  border-radius: 0.5rem;
+  padding: 1.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  font-size: 2rem;
+  margin-top: 1.5rem;
 }
 
-.checkout .row .summary .grand-total p{
-   color: var(--red);
+.checkout .row .summary .grand-total span {
+  color: var(--light-color);
 }
 
-.orders .box-container{
-   display: grid;
-   grid-template-columns: repeat(auto-fit, 35rem);
-   align-items: flex-start;
-   justify-content: center;
-   gap: 1.5rem;
+.checkout .row .summary .grand-total p {
+  color: var(--red);
 }
 
-.orders .box-container .box{
-   background-color: var(--white);
-   border-radius: .5rem;
-   border: var(--border);
-   padding: 2rem;
-   overflow-x: hidden;
+.orders .box-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 35rem);
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
-.orders .box-container .box .date{
-   padding:1rem 1.5rem;
-   color: var(--light-color);
-   background-color: var(--light-bg);
-   font-size: 1.6rem;
-   display: inline-block;
-   margin-bottom: 1.5rem;
-   border-radius: .5rem;
+.orders .box-container .box {
+  background-color: var(--white);
+  border-radius: 0.5rem;
+  border: var(--border);
+  padding: 2rem;
+  overflow-x: hidden;
 }
 
-.orders .box-container .box .date i{
-   margin-right: 1rem;
-   color: var(--main-color);
+.orders .box-container .box .date {
+  padding: 1rem 1.5rem;
+  color: var(--light-color);
+  background-color: var(--light-bg);
+  font-size: 1.6rem;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
 }
 
-.orders .box-container .box .image{
-   height: 20rem;
-   width: 100%;
-   object-fit: contain;
-   margin: 1rem 0;
+.orders .box-container .box .date i {
+  margin-right: 1rem;
+  color: var(--main-color);
 }
 
-.orders .box-container .box .name{
-   font-size: 2rem;
-   color: var(--black);
-   text-overflow: ellipsis;
-   margin: 1rem 0;
-   overflow-x: hidden;
+.orders .box-container .box .image {
+  height: 20rem;
+  width: 100%;
+  object-fit: contain;
+  margin: 1rem 0;
 }
 
-.orders .box-container .box .price{
-   color: var(--red);
-   font-size: 1.8rem;
-   padding: .5rem 0;
+.orders .box-container .box .name {
+  font-size: 2rem;
+  color: var(--black);
+  text-overflow: ellipsis;
+  margin: 1rem 0;
+  overflow-x: hidden;
 }
 
-.orders .box-container .box .status{
-   padding-top: .5rem;
-   font-size: 1.7rem;
+.orders .box-container .box .price {
+  color: var(--red);
+  font-size: 1.8rem;
+  padding: 0.5rem 0;
 }
 
-.orders .box-container .box:hover{
-   box-shadow: var(--box-shodow);
+.orders .box-container .box .status {
+  padding-top: 0.5rem;
+  font-size: 1.7rem;
 }
 
-.orders .box-container .box:hover .date{
-   background-color: var(--black);
-   color: var(--white);
-}
-.orders .box-container .box:hover .date i{
-   color: var(--white);
+.orders .box-container .box:hover {
+  box-shadow: var(--box-shodow);
 }
 
-.order-details .box-container{
-   background-color: var(--white);
-   border: var(--border);
-   border-radius: .5rem;
-   padding: 2rem;
-   box-shadow: var(--box-shodow);
+.orders .box-container .box:hover .date {
+  background-color: var(--black);
+  color: var(--white);
 }
 
-.order-details .box-container .box{
-   display: flex;
-   gap: 1.5rem;
-   flex-wrap: wrap;
-   align-items: flex-start;
-   overflow-x: hidden;
+.orders .box-container .box:hover .date i {
+  color: var(--white);
 }
 
-.order-details .box-container .box .col{
-   flex: 1 1 40rem;
+.order-details .box-container {
+  background-color: var(--white);
+  border: var(--border);
+  border-radius: 0.5rem;
+  padding: 2rem;
+  box-shadow: var(--box-shodow);
 }
 
-.order-details .box-container .box .col .image{
-   height: 17rem;
-   width: 100%;
-   object-fit: contain;
-   margin: 1rem 0;
+.order-details .box-container .box {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  overflow-x: hidden;
 }
 
-.order-details .box-container .box .col .title{
-   border-radius: .5rem;
-   margin-bottom: 1rem;
-   padding: 1rem 1.5rem;
-   font-size: 1.7rem;
-   color: var(--light-color);
-   background-color: var(--light-bg);
-   display: inline-block;
-   text-transform: capitalize;
+.order-details .box-container .box .col {
+  flex: 1 1 40rem;
 }
 
-.order-details .box-container .box .col .title i{
-   margin-right: 1rem;
-   color: var(--black);
+.order-details .box-container .box .col .image {
+  height: 17rem;
+  width: 100%;
+  object-fit: contain;
+  margin: 1rem 0;
 }
 
-.order-details .box-container .box .col .price{
-   color: var(--red);
-   font-size: 1.8rem;
-   padding: .5rem 0;
+.order-details .box-container .box .col .title {
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  padding: 1rem 1.5rem;
+  font-size: 1.7rem;
+  color: var(--light-color);
+  background-color: var(--light-bg);
+  display: inline-block;
+  text-transform: capitalize;
 }
 
-.order-details .box-container .box .col .name{
-   font-size: 2rem;
-   color: var(--black);
-   text-overflow: ellipsis;
-   overflow-x: hidden;
+.order-details .box-container .box .col .title i {
+  margin-right: 1rem;
+  color: var(--black);
 }
 
-.order-details .box-container .box .col .user{
-   padding: .7rem 0;
-   font-size: 1.7rem;
-   color: var(--light-color);
-   line-height: 1.5;
+.order-details .box-container .box .col .price {
+  color: var(--red);
+  font-size: 1.8rem;
+  padding: 0.5rem 0;
 }
 
-.order-details .box-container .box .col .user i{
-   margin-right: 1rem;
-   color: var(--main-color);
+.order-details .box-container .box .col .name {
+  font-size: 2rem;
+  color: var(--black);
+  text-overflow: ellipsis;
+  overflow-x: hidden;
 }
 
-.order-details .box-container .box .col .grand-total{
-   background-color: var(--black);
-   display: flex;
-   align-items: center;
-   justify-content: space-between;
-   gap: 1.5rem;
-   flex-wrap: wrap;
-   padding:1.5rem;
-   font-size: 2rem;
-   color: var(--white);
-   border-radius: .5rem;
-   text-transform: capitalize;
-   margin-top: 1.5rem;
+.order-details .box-container .box .col .user {
+  padding: 0.7rem 0;
+  font-size: 1.7rem;
+  color: var(--light-color);
+  line-height: 1.5;
 }
 
-.order-details .box-container .box .col .grand-total span{
-   color: var(--orange);
+.order-details .box-container .box .col .user i {
+  margin-right: 1rem;
+  color: var(--main-color);
 }
 
-.order-details .box-container .box .col .status{
-   font-size: 1.8rem;
-   padding: .5rem 0;
+.order-details .box-container .box .col .grand-total {
+  background-color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem;
+  font-size: 2rem;
+  color: var(--white);
+  border-radius: 0.5rem;
+  text-transform: capitalize;
+  margin-top: 1.5rem;
 }
 
-
-
-
-
-@media (max-width:991px){
-
-   html{
-      font-size: 55%;
-   }
-
+.order-details .box-container .box .col .grand-total span {
+  color: var(--orange);
 }
 
-@media (max-width:768px){
-
-   #menu-btn{
-      display: inline-block;
-   }
-
-   .header .flex .navbar{
-      position: absolute;
-      top: 99%; left: 0; right: 0;
-      background-color: var(--black);
-      padding: 1rem 2rem;
-      border-top: .1rem solid var(--white);
-      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-      transition: .2s linear;
-   }
-
-   .header .flex .navbar.active{
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-   }
-
-   .header .flex .navbar a{
-      display: block;
-      width: 100%;
-      margin: 1rem 0;
-      padding: 1rem 0;
-   }
-
+.order-details .box-container .box .col .status {
+  font-size: 1.8rem;
+  padding: 0.5rem 0;
 }
 
-@media (max-width:450px){
+@media (max-width: 991px) {
+  html {
+    font-size: 55%;
+  }
+}
 
-   html{
-      font-size: 50%;
-   }
+@media (max-width: 768px) {
+  #menu-btn {
+    display: inline-block;
+  }
 
-   .heading{
-      font-size: 2.5rem;
-   }
+  .header .flex .navbar {
+    position: absolute;
+    top: 99%;
+    left: 0;
+    right: 0;
+    background-color: var(--black);
+    padding: 1rem 2rem;
+    border-top: 0.1rem solid var(--white);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    transition: 0.2s linear;
+  }
 
-   .products .box-container{
-      grid-template-columns: 1fr;
-   }
+  .header .flex .navbar.active {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
 
-   .orders .box-container{
-      grid-template-columns: 1fr;
-   }
+  .header .flex .navbar a {
+    display: block;
+    width: 100%;
+    margin: 1rem 0;
+    padding: 1rem 0;
+  }
+}
 
+@media (max-width: 450px) {
+  html {
+    font-size: 50%;
+  }
+
+  .heading {
+    font-size: 2.5rem;
+  }
+
+  .products .box-container {
+    grid-template-columns: 1fr;
+  }
+
+  .orders .box-container {
+    grid-template-columns: 1fr;
+  }
 }

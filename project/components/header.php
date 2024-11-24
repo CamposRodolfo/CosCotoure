@@ -1,6 +1,11 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <header class="header">
    <section class="flex">
-      <a href="#" class="logo">Logo</a>
+      <a href="#" class="logo">COSCOTOURE</a>
 
       <nav class="navbar">
          <a href="add_product.php">Añadir producto</a>
@@ -8,7 +13,6 @@
          <a href="orders.php">Mis pedidos</a>
 
          <?php
-         session_start();
          if (isset($_SESSION['user_id'])) {
             echo '<a href="logout.php" class="btn-logout">Cerrar sesión</a>';
          } else {

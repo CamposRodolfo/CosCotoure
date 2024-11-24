@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_SESSION['user_id'])) {
+    header('Location: view_products.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="css/login.css">
     <title>Inicio de sesion</title>
 </head>
 
@@ -14,7 +21,7 @@
     <div class="container" id="container">
         <!-- Formulario de Registro -->
         <div class="form-container sign-up">
-            <form action="../register.php" method="POST">
+            <form method="POST" action="components/login_register.php">
                 <h1>Create Account</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -23,16 +30,17 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email for registration</span>
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Sign Up</button>
+                <input type="text" name="name" placeholder="Nombre" required>
+                <input type="email" name="email" placeholder="Correo" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit" name="register">Registrarse</button>
+                <?php if (isset($error_msg)) echo "<p>$error_msg</p>"; ?>
             </form>
         </div>
 
         <!-- Formulario de Inicio de Sesión -->
         <div class="form-container sign-in">
-            <form action="../login.php" method="POST">
+            <form method="POST" action="components/login_register.php">
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -41,10 +49,10 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your email password</span>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <a href="forgot_password.php">Forgot Your Password?</a>
-                <button type="submit">Sign In</button>
+                <input type="email" name="email" placeholder="Correo" required>
+                <input type="password" name="password" placeholder="Contraseña" required>
+                <button type="submit" name="login">Iniciar Sesión</button>
+                <?php if (isset($error_msg)) echo "<p>$error_msg</p>"; ?>
             </form>
         </div>
 

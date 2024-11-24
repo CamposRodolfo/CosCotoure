@@ -1,6 +1,10 @@
 <?php
-
 include 'components/connect.php';
+//registrado base de datos
+/* if (!isset($_SESSION['user_id'])) {
+   header('Location: login.php');
+   exit;
+} */
 
 if(isset($_COOKIE['user_id'])){
    $user_id = $_COOKIE['user_id'];

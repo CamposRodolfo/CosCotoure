@@ -1,12 +1,23 @@
+
 <?php
 
 include 'components/connect.php';
+//registrado base de datos
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
 
 if(isset($_COOKIE['user_id'])){
    $user_id = $_COOKIE['user_id'];
 }else{
    setcookie('user_id', create_unique_id(), time() + 60*60*24*30);
 }
+
+
+
 
 if(isset($_POST['update_cart'])){
 
