@@ -52,27 +52,30 @@ CREATE TABLE Inventario (
 -- Tabla de Pedidos
 CREATE TABLE Pedidos (
     id_pedido INT AUTO_INCREMENT PRIMARY KEY,
-    id_usuario INT,
-    estado ENUM('en proceso','entregado','cancelado') DEFAULT 'en proceso',
+    id_usuario INT NOT NULL,
+    estado ENUM('en proceso', 'entregado', 'cancelado') DEFAULT 'en proceso',
     total DECIMAL(10, 2) NOT NULL,
+    direccion VARCHAR(255) NOT NULL,
+    tipo_direccion VARCHAR(10) NOT NULL,
+    metodo_pago VARCHAR(50) NOT NULL,
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
 -- Detalle de Pedidos (Productos solicitados en cada pedido)
 CREATE TABLE DetallePedido (
     id_detalle INT AUTO_INCREMENT PRIMARY KEY,
-    id_pedido INT,
-    id_producto INT,
-    id_talla INT,
-    cantidad INT DEFAULT 1,
+    id_pedido INT NOT NULL,
+    id_producto INT NOT NULL,
+    cantidad INT NOT NULL DEFAULT 1,
     precio DECIMAL(10, 2) NOT NULL,
-    subtotal DECIMAL(10, 2) GENERATED ALWAYS AS (precio * cantidad) STORED,
+    subtotal DECIMAL(10, 2) GENERATED ALWAYS AS (cantidad * precio) STORED,
     FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido) ON DELETE CASCADE,
-    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE,
-    FOREIGN KEY (id_talla) REFERENCES Tallas(id_talla) ON DELETE CASCADE
+    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 -- Tabla de Sesiones (para login/logout)
 CREATE TABLE Sesiones (

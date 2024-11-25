@@ -26,13 +26,13 @@
     {
         "nombre_producto": "Sudadera Adidas con Capucha",
         "precio": 59.99,
-        "imagen_producto": "https://www.adidas.com.mx/media/w_640,h_640,f_auto/ayMKLRFPkcDd0os34fpg.jpg",
+        "imagen_producto": "https://images.pexels.com/photos/9468836/pexels-photo-9468836.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         "creado_por": 1
     },
     {
         "nombre_producto": "Levi's 501",
         "precio": 55.00,
-        "imagen_producto": "https://www.pexels.com/es-es/foto/par-de-zapatillas-azules-con-cordones-19090/",
+        "imagen_producto": "https://media.gq.com.mx/photos/6654dc1fcc8329586b252b34/16:9/w_1920,c_limit/pantalones-levis-501-momentos-mas-importantes-en-la-historia.jpg",
         "creado_por": 1
     },
     {
@@ -42,21 +42,21 @@
         "creado_por": 1
     },
     {
-        "nombre_producto": "Pantalones Cargo Masculinos",
+        "nombre_producto": "Pantalones Cargo",
         "precio": 35.00,
-        "imagen_producto": "https://www.pexels.com/es-es/foto/persona-piernas-patas-pantalones-11716436/",
+        "imagen_producto": "https://mohamedsgo.com/7480-large_default/pantalon-cargo-eloi-beige.jpg",
         "creado_por": 1
     },
     {
         "nombre_producto": "Botines Timberland",
         "precio": 150.00,
-        "imagen_producto": "https://www.pexels.com/es-es/foto/suelo-molido-botas-vista-superior-23319175/",
+        "imagen_producto": "https://th.bing.com/th/id/R.b85930f82aa9c571e155a2422cf7fbbc?rik=zBDC8PjSkVJXSg&riu=http%3a%2f%2fimage.rakuten.co.jp%2fnoel-ange%2fcabinet%2fshoes%2ftimberland2%2ftimberland-12909-a.jpg&ehk=ADow%2bX4s6disWJYw2hgFPslbYOx620KixJZIM90lRIs%3d&risl=&pid=ImgRaw&r=0",
         "creado_por": 1
     },
     {
         "nombre_producto": "Shoes Puma Rosa",
         "precio": 49.99,
-        "imagen_producto": "https://www.pexels.com/es-es/foto/zapatos-silla-zapatillas-puma-6748334/",
+        "imagen_producto": "https://imgmarketplace.lojasrenner.com.br/20001/1567/7010701355611/7510702528082/0.jpeg",
         "creado_por": 1
     },
     {
@@ -69,19 +69,6 @@
         "nombre_producto": "Zapatillas Reebok Classic",
         "precio": 75.00,
         "imagen_producto": "https://images.pexels.com/photos/13566363/pexels-photo-13566363.jpeg?auto=compress&cs=tinysrgb&w=600",
-        "creado_por": 1
-    },
-    {
-        "nombre_producto": "Zapatillas Reebok ",
-        "precio": 19.99,
-        "imagen_producto": "https://www.pexels.com/es-es/foto/zapatillas-blancas-de-pie-sobre-una-manta-en-una-cama-20244251/",
-        "creado_por": 1
-    },
-    
-    {
-        "nombre_producto": "Cinturón de Cuero Negro",
-        "precio": 25.00,
-        "imagen_producto": "https://www.pexels.com/es-es/foto/moda-traje-modelo-maqueta-4937224/",
         "creado_por": 1
     }
 ]
