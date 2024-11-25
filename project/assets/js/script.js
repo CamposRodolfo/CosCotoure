@@ -1,27 +1,13 @@
-let navbar = document.querySelector('.header .flex .navbar');
-
-document.querySelector('#menu-btn').onclick = () =>{
-   navbar.classList.toggle('active');
-}
-
-window.onscroll = () =>{
-   navbar.classList.remove('active');
-}
-
-document.querySelectorAll('input[type="number"]').forEach(inputNumber => {
-   inputNumber.oninput = () =>{
-      if(inputNumber.value.length > inputNumber.maxLength) inputNumber.value = inputNumber.value.slice(0, inputNumber.maxLength);
-   };
-});
-
 document.addEventListener("DOMContentLoaded", () => {
-    const navbar = document.querySelector('.header .flex .navbar');
-    const loginButton = document.getElementById('login');
-    const registerButton = document.getElementById('register');
     const container = document.getElementById('container');
+    const registerBtn = document.getElementById('register');
+    const loginBtn = document.getElementById('login');
+    const menuBtn = document.querySelector('#menu-btn');
+    const navbar = document.querySelector('.header .flex .navbar');
 
-    if (navbar) {
-        document.querySelector('#menu-btn')?.addEventListener('click', () => {
+    // Validar y asignar eventos
+    if (menuBtn && navbar) {
+        menuBtn.addEventListener('click', () => {
             navbar.classList.toggle('active');
         });
 
@@ -30,6 +16,24 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Validar los botones de registro e inicio de sesión
+    if (registerBtn && container) {
+        registerBtn.addEventListener('click', () => {
+            container.classList.add('active');
+        });
+    } else {
+        console.error("Elemento 'register' o 'container' no encontrado.");
+    }
+
+    if (loginBtn && container) {
+        loginBtn.addEventListener('click', () => {
+            container.classList.remove('active');
+        });
+    } else {
+        console.error("Elemento 'login' o 'container' no encontrado.");
+    }
+
+    // Validar inputs de tipo número
     document.querySelectorAll('input[type="number"]').forEach(inputNumber => {
         inputNumber.addEventListener('input', () => {
             if (inputNumber.value.length > inputNumber.maxLength) {
@@ -37,11 +41,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     });
-
-    if (loginButton && registerButton && container) {
-        loginButton.onclick = () => container.classList.remove('active');
-        registerButton.onclick = () => container.classList.add('active');
-    } else {
-        console.error("Uno o más elementos no se encontraron en el DOM.");
-    }
 });

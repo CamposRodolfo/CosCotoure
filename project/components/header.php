@@ -1,5 +1,8 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (isset($_POST['logout'])) {
     session_unset(); // Eliminar todas las variables de sesión
     session_destroy(); // Destruir la sesión
@@ -17,26 +20,33 @@ $count_cart_items = $conn->prepare("SELECT * FROM CarroCompras WHERE id_usuario 
 $count_cart_items->execute([$_SESSION['id_usuario']]); 
 $total_cart_items = $count_cart_items->rowCount(); // Cuenta el número de filas devueltas (número de artículos en el carrito)
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>Dropdown Menu 10</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/header.css">
 </head>
 <body>
-    <header>
+    <header class="header">
+        <section calss="flex">
+            <a href="index.php">CosCotoure</a>
+
+            <nav class="navbar">
+                <a href="index.php">Ver Productos</a>
+                <a href="agregar_producto.php">Agregar Producto</a>
+                <a href="lista_pedidos.php">Lista de Pedidos</a>
+
+                <a href="shopping_cart.php" class="cart-btn">
+                    Carro de Compras <span><?= $total_cart_items ?? 0; ?></span>
+                </a>
+
+                <!-- <span class="navigation__group">
+                    <button type="button" class="profile__btn">
+                        <img  src="../../project_assets/header/Usuario.png" alt="Usuario">
+                    </button>
+                </span>  -->     
+            </nav>
+        </section>
         <span class="navigation__group">
-            <img class="icon" src="../../project_assets/header/message.svg" alt="Message">
-            <div class="notification__wrapper">
-                <img class="icon" src="../../project_assets/header/notification.svg" alt="Notification">
-                <div class="notification__count"></div>
-            </div>
             <button type="button" class="profile__btn">
-    
                 <img  src="../../project_assets/header/Usuario.png" alt="Usuario">
             </button>
         </span>
@@ -44,7 +54,7 @@ $total_cart_items = $count_cart_items->rowCount(); // Cuenta el número de filas
         <div class="dropdown__wrapper hide dropdown__wrapper--fade-in none" id="dropdown-menu">
             <nav>
                 <div class="profile__wrapper">
-                    <img class="profile__avatar" src="../../project_assets/header/Gabriel.jpg" alt="<?php echo htmlspecialchars($nombreUsuario); ?>">
+                    <img class="profile__avatar" src="../../project_assets/header/Usuario.png" alt="<?php echo htmlspecialchars($nombreUsuario); ?>">
                     <div class="profile__info">
                         <h2 class="profile__name"><?php echo htmlspecialchars($nombreUsuario); ?></h2>
                         <p class="profile__email"><?php echo htmlspecialchars($correoUsuario); ?></p>
@@ -60,22 +70,10 @@ $total_cart_items = $count_cart_items->rowCount(); // Cuenta el número de filas
                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4" />
                                 <path d="M15 19l2 2l4 -4" />
                             </svg>    
-                            Account
+                            Mi Cuenta
                         </a>
                     </li>
-                    <li><a href="integrations.php">Integrations</a></li>
-                    <li><a href="settings.php">Settings</a></li>
-                    <li><a href="guide.php">Guide</a></li>
-                    <li><a href="help.php">Help</a></li>
                 </ul>
-                <hr class="divider">
-                <div class="plan">
-                    <div class="plan__description">
-                        <h2>Free Plan</h2>
-                        <p>1500 credits</p>
-                    </div>
-                    <a href="#" title="Upgrade Plan" class="upgrade-btn">Upgrade</a>
-                </div>
                 <hr class="divider">
                 <ul>
                     <li>
@@ -87,7 +85,7 @@ $total_cart_items = $count_cart_items->rowCount(); // Cuenta el número de filas
                                     <path d="M9 12h12l-3 -3" />
                                     <path d="M18 15l3 -3" />
                                 </svg>
-                                Sign Out
+                                Cerrar Sesión
                             </button>
                         </form>
                     </li>
@@ -95,16 +93,6 @@ $total_cart_items = $count_cart_items->rowCount(); // Cuenta el número de filas
             </nav>
         </div>
 
-        <nav class="navbar">
-            <a href="agregar_producto.php">Añadir producto</a>
-            <a href="index.php">Ver productos</a>
-            <a href="detalle_pedido.php">Mis pedidos</a>
-
-            <a href="carro_compras.php" class="cart-btn">
-                Carrito <span><?= $total_cart_items ?? 0; ?></span>
-            </a>
-            
-        </nav>
     </header>
 
     <script src="../assets/js/header.js"></script>
