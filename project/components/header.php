@@ -1,8 +1,4 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
-
 if (isset($_POST['logout'])) {
     session_unset(); // Eliminar todas las variables de sesión
     session_destroy(); // Destruir la sesión

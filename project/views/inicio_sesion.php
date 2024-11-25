@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include '../components/connect.php'; // Conexión a la base de datos
 $error_msg = ''; // Para almacenar mensajes de error
 $success_msg = ''; // Mensaje de éxito
@@ -11,13 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
     // Verificar si el correo ya está registrado
-    $check_user = $conn->prepare("SELECT * FROM `Usuarios` WHERE correo = ?");
+    $check_user = $conn->prepare("SELECT * FROM Usuarios WHERE correo = ?");
     $check_user->execute([$email]);
     if ($check_user->rowCount() > 0) {
         $error_msg = 'El correo ya está registrado.';
     } else {
         // Insertar nuevo usuario
-        $insert_user = $conn->prepare("INSERT INTO `Usuarios` (nombre, correo, contrasena) VALUES (?, ?, ?)");
+        $insert_user = $conn->prepare("INSERT INTO Usuarios (nombre, correo, contrasena) VALUES (?, ?, ?)");
         $insert_user->execute([$name, $email, $password]);
 
         // Iniciar sesión automáticamente después de registrarse
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
 
-    $get_user = $conn->prepare("SELECT * FROM `Usuarios` WHERE correo = ?");
+    $get_user = $conn->prepare("SELECT * FROM Usuarios WHERE correo = ?");
     $get_user->execute([$email]);
 
     if ($get_user->rowCount() > 0) {

@@ -1,7 +1,6 @@
 <?php
 
 include '../components/connect.php';
-$id_usuario = "1";
 
 if(isset($_POST['add'])){
 
@@ -22,7 +21,7 @@ if(isset($_POST['add'])){
         $warning_msg[] = '¡El tamaño de la imagen es demasiado grande!';
    }else{
         $add_product = $conn->prepare("INSERT INTO `Productos`(nombre_producto, precio, imagen_producto, creado_por) VALUES(?,?,?,?)");
-        $add_product->execute([$name, $precio, $rename, $id_usuario]); // Falta obtener la variable de usuario de la base de datos
+        $add_product->execute([$name, $precio, $rename, $_SESSION['id_usuario']]); // Falta obtener la variable de usuario de la base de datos
         move_uploaded_file($image_tmp_name, $image_folder);
         $success_msg[] = '¡Producto agregado!';
    }

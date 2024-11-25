@@ -2,8 +2,6 @@
 
 include '../components/connect.php';
 
-$id_usuario = "1";
-
 if(isset($_POST['update_cart'])){
 
    $id_carro = $_POST['id_carro'];
@@ -39,11 +37,11 @@ if(isset($_POST['delete_item'])){
 if(isset($_POST['empty_cart'])){
    
    $verify_empty_cart = $conn->prepare("SELECT * FROM CarroCompras WHERE id_usuario = ?");
-   $verify_empty_cart->execute([$id_usuario]);
+   $verify_empty_cart->execute([$_SESSION['id_usuario']]);
 
    if($verify_empty_cart->rowCount() > 0){
       $delete_id_carro = $conn->prepare("DELETE FROM CarroCompras WHERE id_usuario = ?");
-      $delete_id_carro->execute([$id_usuario]);
+      $delete_id_carro->execute([$_SESSION['id_usuario']]);
       $success_msg[] = '¡Carrito vaciado!';
    }else{
       $warning_msg[] = '¡El carrito ya está vacío!';
@@ -79,7 +77,7 @@ if(isset($_POST['empty_cart'])){
    <?php
       $grand_total = 0;
       $select_cart = $conn->prepare("SELECT * FROM CarroCompras WHERE id_usuario = ?");
-      $select_cart->execute([$id_usuario]);
+      $select_cart->execute([$_SESSION['id_usuario']]);
       if($select_cart->rowCount() > 0){
          while($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)){
 

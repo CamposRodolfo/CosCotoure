@@ -2,8 +2,6 @@
 
 include '../components/connect.php';
 
-$id_usuario = '1';
-
 
 if(isset($_GET['get_id'])){
    $get_id = $_GET['get_id'];
