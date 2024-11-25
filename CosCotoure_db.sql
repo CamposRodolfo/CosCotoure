@@ -8,6 +8,7 @@ CREATE TABLE Usuarios (
     nombre VARCHAR(100) NOT NULL,
     correo VARCHAR(100) UNIQUE NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
+    imagen_perfil VARCHAR(255),
     telefono VARCHAR(20),
     direccion1 VARCHAR(255),
     direccion2 VARCHAR(255),
@@ -52,7 +53,7 @@ CREATE TABLE Inventario (
 CREATE TABLE Pedidos (
     id_pedido INT AUTO_INCREMENT PRIMARY KEY,
     id_usuario INT,
-    estado ENUM('en proceso', 'cancelado') DEFAULT 'en proceso',
+    estado ENUM('en proceso','entregado','cancelado') DEFAULT 'en proceso',
     total DECIMAL(10, 2) NOT NULL,
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
