@@ -62,9 +62,13 @@ if(isset($_POST['add_to_cart'])){
       $select_Productos->execute();
       if($select_Productos->rowCount() > 0){
          while($fetch_producto = $select_Productos->fetch(PDO::FETCH_ASSOC)){
+            // Detectar si es URL o archivo local
+            $imagen_producto = filter_var($fetch_producto['imagen_producto'], FILTER_VALIDATE_URL) ? 
+                               $fetch_producto['imagen_producto'] : 
+                               "../assets/img/archivos_subidos/" . $fetch_producto['imagen_producto'];
    ?>
    <form action="" method="POST" class="box">
-      <img src="../assets/img/archivos_subidos/<?= $fetch_producto['imagen_producto']; ?>" class="image" alt="">
+   <img src="<?= htmlspecialchars($imagen_producto); ?>" class="image" alt="<?= htmlspecialchars($fetch_producto['nombre_producto']); ?>">
       <h3 class="name"><?= $fetch_producto['nombre_producto'] ?></h3>
       <input type="hidden" name="id_producto" value="<?= $fetch_producto['id_producto']; ?>">
       <div class="flex">

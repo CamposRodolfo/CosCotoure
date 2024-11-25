@@ -85,12 +85,16 @@ if(isset($_POST['empty_cart'])){
          $select_products->execute([$fetch_cart['id_producto']]);
          if($select_products->rowCount() > 0){
             $fetch_product = $select_products->fetch(PDO::FETCH_ASSOC);
-      
-   ?>
+               /* Imagen cargarla  */
+               $imagen_producto = filter_var(
+                 $fetch_product['imagen_producto'], 
+                 FILTER_VALIDATE_URL
+             ) ? $fetch_product['imagen_producto'] : 
+             "../assets/img/archivos_subidos/" . htmlspecialchars($fetch_product['imagen_producto']);
+?>   
    <form action="" method="POST" class="box">
-      <input type="hidden" name="id_carro" value="<?= $fetch_cart['id_carro']; ?>">
-      <img src="../assets/img/archivos_subidos/<?= $fetch_product['imagen_producto']; ?>" class="image" alt="">
-      <h3 class="name"><?= $fetch_product['nombre_producto']; ?></h3>
+   <img src="<?= htmlspecialchars($imagen_producto); ?>" class="image" alt="<?= htmlspecialchars($fetch_product['nombre_producto']); ?>">
+   <h3 class="name"><?= $fetch_product['nombre_producto']; ?></h3>
       <div class="flex">
          <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_cart['precio']; ?></p>
          <input type="number" name="cantidad" required min="1" value="<?= $fetch_cart['cantidad']; ?>" max="99" maxlength="2" class="cantidad">

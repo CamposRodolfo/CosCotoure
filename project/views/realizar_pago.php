@@ -1,6 +1,12 @@
 <?php
+$pruebanombre = "Rodolfo Campos";
+$pruebacasa = "Panama";
+$pruebacelular = "64403577";
+$pruebacorreo = "rodolfo.campos1@utp.ac.pa";
 
 include '../components/connect.php';
+
+$id_usuario = "1";
 
 if(isset($_POST['place_order'])){
 
@@ -18,7 +24,7 @@ if(isset($_POST['place_order'])){
    $method = filter_var($method, FILTER_SANITIZE_STRING);
 
    $verify_cart = $conn->prepare("SELECT * FROM CarroCompras WHERE id_usuario = ?");
-   $verify_cart->execute([$_SESSION['id_usuario']]);
+   $verify_cart->execute([$id_usuario]);
    
    if(isset($_GET['get_id'])){
 
@@ -28,7 +34,7 @@ if(isset($_POST['place_order'])){
          while($fetch_p = $get_product->fetch(PDO::FETCH_ASSOC)){
             /* Verificar con los atributos de las tablas Pedidos y DetallePedido de la base de datos */
             $insert_order = $conn->prepare("INSERT INTO Pedidos(id_usuario, name, number, email, address, address_type, method, id_producto, precio, cantidad) VALUES(?,?,?,?,?,?,?,?,?,?)");
-            $insert_order->execute([$_SESSION['id_usuario'], $name, $number, $email, $address, $address_type, $method, $fetch_p['id'], $fetch_p['precio'], 1]);
+            $insert_order->execute([$id_usuario, $name, $number, $email, $address, $address_type, $method, $fetch_p['id'], $fetch_p['precio'], 1]);
             header('location:lista_pedidos.php');
          }
       }else{
@@ -41,13 +47,13 @@ if(isset($_POST['place_order'])){
 
         /* Verificar con los atributos de las tablas Pedidos y DetallePedido de la base de datos */
          $insert_order = $conn->prepare("INSERT INTO Pedidos(id_usuario, name, number, email, address, address_type, method, id_producto, precio, cantidad) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
-         $insert_order->execute([$_SESSION['id_usuario'], $name, $number, $email, $address, $address_type, $method, $f_cart['id_producto'], $f_cart['precio'], $f_cart['cantidad']]);
+         $insert_order->execute([$id_usuario, $name, $number, $email, $address, $address_type, $method, $f_cart['id_producto'], $f_cart['precio'], $f_cart['cantidad']]);
 
       }
 
       if($insert_order){
          $delete_cart_id = $conn->prepare("DELETE FROM CarroCompras WHERE id_usuario = ?");
-         $delete_cart_id->execute([$_SESSION['id_usuario']]);
+         $delete_cart_id->execute([$id_usuario]);
          header('location:lista_pedidos.php');
       }
 
@@ -87,34 +93,34 @@ if(isset($_POST['place_order'])){
          <div class="flex">
             <div class="box">
                <p>tu nombre <span>*</span></p>
-               <input type="text" name="name" required maxlength="50" placeholder="Ingresa tu nombre" class="input" <?php echo'value="'.$_SESSION['nombre_usuario'].'"'?>>
+               <input type="text" name="name" required maxlength="50" placeholder="Ingresa tu nombre" class="input" <?php echo'value="'.$pruebanombre.'"'?>>
                <p>tu número <span>*</span></p>
-               <input type="number" name="number" required maxlength="10" placeholder="Ingresa tu número" class="input" min="0" max="9999999999" <?php echo'value="'.$_SESSION['telefono'].'"'?>>
+               <input type="number" name="number" required maxlength="10" placeholder="Ingresa tu número" class="input" min="0" max="9999999999" <?php echo'value="'.$pruebacelular.'"'?>>
                <p>tu correo electrónico <span>*</span></p>
-               <input type="email" name="email" required maxlength="50" placeholder="Ingresa tu correo electrónico" class="input" <?php echo'value="'.$_SESSION['correo_usuario'].'"'?>>
+               <input type="email" name="email" required maxlength="50" placeholder="Ingresa tu correo electrónico" class="input" <?php echo'value="'.$pruebacorreo.'"'?>>
                <p>método de pago <span>*</span></p>
-               <select name="method" class="input" <?php echo'value="'.$_SESSION['metodo_pago'].'"'?> required>
+               <select name="method" class="input" required>
                   <option value="credit or debit card">tarjeta de crédito o débito</option>
                   <option value="net banking">banca en línea</option>  
                   <option value="cash on delivery">contra reembolso</option>
                </select>
                <p>tipo de dirección <span>*</span></p>
-               <select name="address_type" class="input" <?php echo'value="'.$_SESSION['tipo_direccion'].'"'?> required> 
+               <select name="address_type" class="input" required> 
                   <option value="home">casa</option>
                   <option value="office">oficina</option>
                </select>
             </div>
             <div class="box">
                <p>línea de dirección 01 <span>*</span></p>
-               <input type="text" name="flat" required maxlength="50" placeholder="Ej. número de departamento y edificio" class="input" <?php echo'value="'.$_SESSION['direccion1'].'"'?>>
+               <input type="text" name="flat" required maxlength="50" placeholder="Ej. número de departamento y edificio" class="input" <?php echo'value="'.$pruebacasa.'"'?>>
                <p>línea de dirección 02 <span>*</span></p>
-               <input type="text" name="street" required maxlength="50" placeholder="Ej. nombre de la calle y localidad" class="input" <?php echo'value="'.$_SESSION['direccion2'].'"'?>>
+               <input type="text" name="street" required maxlength="50" placeholder="Ej. nombre de la calle y localidad" class="input">
                <p>nombre de la ciudad <span>*</span></p>
-               <input type="text" name="city" required maxlength="50" placeholder="Ingresa el nombre de tu ciudad" class="input" <?php echo'value="'.$_SESSION['ciudad'].'"'?>>
+               <input type="text" name="city" required maxlength="50" placeholder="Ingresa el nombre de tu ciudad" class="input">
                <p>nombre del país <span>*</span></p>
-               <input type="text" name="country" required maxlength="50" placeholder="Ingresa el nombre de tu país" class="input" <?php echo'value="'.$_SESSION['pais'].'"'?>>
+               <input type="text" name="country" required maxlength="50" placeholder="Ingresa el nombre de tu país" class="input">
                <p>código postal <span>*</span></p>
-               <input type="number" name="pin_code" required maxlength="6" placeholder="Ej. 123456" class="input" min="0" max="999999" <?php echo'value="'.$_SESSION['codigo_postal'].'"'?>>
+               <input type="number" name="pin_code" required maxlength="6" placeholder="Ej. 123456" class="input" min="0" max="999999">
             </div>
          </div>
          <input type="submit" value="realizar pedido" name="place_order" class="btn">
@@ -128,9 +134,13 @@ if(isset($_POST['place_order'])){
                $select_get = $conn->prepare("SELECT * FROM Productos WHERE id_producto = ?");
                $select_get->execute([$_GET['get_id']]);
                while($fetch_get = $select_get->fetch(PDO::FETCH_ASSOC)){
+                   // Verificar si la imagen es una URL o un archivo local
+            $imagen_producto = filter_var($fetch_get['imagen_producto'], FILTER_VALIDATE_URL) ? 
+            $fetch_get['imagen_producto'] : 
+            "../assets/img/archivos_subidos/" . $fetch_get['imagen_producto'];
          ?>
          <div class="flex">
-            <img src="../assets/img/archivos_subidos/<?= $fetch_get['imagen_producto']; ?>" class="image" alt="">
+            <img src="<?= htmlspecialchars($imagen_producto); ?>" class="image" alt="">
             <div>
                <h3 class="name"><?= $fetch_get['nombre_producto']; ?></h3>
                <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_get['precio']; ?> x 1</p>
@@ -138,13 +148,15 @@ if(isset($_POST['place_order'])){
          </div>
          <?php
                }
+
             }else{
                $select_cart = $conn->prepare("SELECT * FROM CarroCompras WHERE id_usuario = ?");
-               $select_cart->execute([$_SESSION['id_usuario']]);
+               $select_cart->execute([$id_usuario]);
                if($select_cart->rowCount() > 0){
                   while($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)){
                      $select_products = $conn->prepare("SELECT * FROM Productos WHERE id_producto = ?");
                      $select_products->execute([$fetch_cart['id_producto']]);
+
                      $fetch_product = $select_products->fetch(PDO::FETCH_ASSOC);
                      $sub_total = ($fetch_cart['cantidad'] * $fetch_product['precio']);
 
@@ -152,7 +164,7 @@ if(isset($_POST['place_order'])){
             
          ?>
          <div class="flex">
-            <img src="../assets/img/archivos_subidos/<?= $fetch_product['imagen_producto']; ?>" class="image" alt="">
+         <img src="<?= filter_var($fetch_product['imagen_producto'], FILTER_VALIDATE_URL) ? $fetch_product['imagen_producto'] : "../assets/img/archivos_subidos/" . $fetch_product['imagen_producto']; ?>" class="image" alt="">
             <div>
                <h3 class="name"><?= $fetch_product['nombre_producto']; ?></h3>
                <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_product['precio']; ?> x <?= $fetch_cart['cantidad']; ?></p>

@@ -16,8 +16,12 @@ if(isset($_POST['cancel'])){
    $update_orders->execute(['canceled', $get_id]);
    header('location:orders.php');
 
-}
+   // Detectar si es URL o archivo local
+   $imagen_producto = filter_var($fetch_producto['imagen_producto'], FILTER_VALIDATE_URL) ? 
+                     $fetch_producto['imagen_producto'] : 
+                     "../assets/img/archivos_subidos/" . $fetch_producto['imagen_producto'];
 
+}
 ?>
 
 <!DOCTYPE html>
@@ -59,7 +63,7 @@ if(isset($_POST['cancel'])){
    <div class="box">
       <div class="col">
          <p class="title"><i class="fas fa-calendar"></i><?= $fetch_pedido['actualizado_en']; ?></p>
-         <img src="uploaded_files/<?= $fetch_producto['image']; ?>" class="image" alt="">
+         <img src="../assets/img/archivos_subidos/<?= $fetch_producto['imagen_producto']; ?>" class="image" alt="">
          <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_pedido['precio']; ?> x <?= $fetch_pedido['cantidad']; ?></p>
          <h3 class="name"><?= $fetch_producto['name']; ?></h3>
          <p class="grand-total">total : <span><i class="fas fa-dollar-sign"></i> <?= $grand_total; ?></span></p>
