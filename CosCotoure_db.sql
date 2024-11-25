@@ -36,7 +36,7 @@ CREATE TABLE Productos (
 -- Tabla de Tallas (relación con Productos)
 CREATE TABLE Tallas (
     id_talla INT AUTO_INCREMENT PRIMARY KEY,
-    talla VARCHAR(10) NOT NULL,
+    talla VARCHAR(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE Inventario (
@@ -44,7 +44,7 @@ CREATE TABLE Inventario (
     id_producto INT,
     id_talla INT,
     stock INT DEFAULT 0,
-    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE
+    FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE,
     FOREIGN KEY (id_talla) REFERENCES Tallas(id_talla) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -66,7 +66,8 @@ CREATE TABLE DetallePedido (
     id_producto INT,
     id_talla INT,
     cantidad INT DEFAULT 1,
-    subtotal DECIMAL(10, 2) NOT NULL,
+    precio DECIMAL(10, 2) NOT NULL,
+    subtotal DECIMAL(10, 2) GENERATED ALWAYS AS (precio * cantidad) STORED,
     FOREIGN KEY (id_pedido) REFERENCES Pedidos(id_pedido) ON DELETE CASCADE,
     FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE,
     FOREIGN KEY (id_talla) REFERENCES Tallas(id_talla) ON DELETE CASCADE
@@ -84,60 +85,22 @@ CREATE TABLE Sesiones (
 
 -- Tabla del Carro de Compras
 CREATE TABLE CarroCompras (
-  id_carro varchar(20) NOT NULL,
-  id_usuario varchar(20) NOT NULL,
-  id_producto varchar(20) NOT NULL,
-  subtotal varchar(10) NOT NULL,
-  cantidad varchar(2) NOT NULL DEFAULT '1'
+  id_carro INT AUTO_INCREMENT PRIMARY KEY,
+  id_usuario INT,
+  id_producto INT,
+  precio DECIMAL(10, 2) NOT NULL,
+  cantidad varchar(2) NOT NULL DEFAULT '1',
+  FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE,
+  FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Consultas adicionales para funcionalidades
--- Crear Usuarios genericos
-INSERT INTO Usuarios (nombre, correo, contrasena)
-VALUES 
-('Rodolfo Campos', 'rodolfo.campos1@utp.ac.pa', MD5('admin123')),
-('Adrina Achurra', 'adriana.achurra@utp.ac.pa', MD5('admin123')),
-('Victor Arrocha', 'victor.arrocha1@utp.ac.pa', MD5('admin123')),
-('Paola Quiñones', 'paola.quinones@utp.ac.pa', MD5('admin123')),
-('Gabriel Ruiz', 'gabriel.ruiz1@utp.ac.pa', MD5('admin123')), 
-('Steven Guerra', 'steven.guerra1@utp.ac.pa', MD5('admin123'));
 
--- Crear un producto con tallas
-INSERT INTO Productos (nombre_producto, precio, imagen_producto, creado_por)
-VALUES ('Camisa', 19.99, 'camisa.jpg', 1);
-
-INSERT INTO Tallas (id_producto, talla, stock)
-VALUES 
-(LAST_INSERT_ID(), 'S', 10),
-(LAST_INSERT_ID(), 'M', 15),
-(LAST_INSERT_ID(), 'L', 5);
-
--- Crear un pedido
-INSERT INTO Pedidos (id_usuario, total)
-VALUES (1, 29.98);
-
-INSERT INTO DetallePedido (id_pedido, id_producto, id_talla, cantidad, subtotal)
-VALUES (LAST_INSERT_ID(), 1, 2, 2, 29.98);
-
--- Actualizar el estado de un pedido
-UPDATE Pedidos
-SET estado = 'cancelado'
-WHERE id_pedido = 1;
-
--- Gestión de perfil (cambiar datos de usuario)
-UPDATE Usuarios
-SET nombre = 'Nuevo Nombre', telefono = '123456789'
-WHERE id_usuario = 1;
-
--- Autenticación
--- Registro
-INSERT INTO Usuarios (nombre, correo, telefono, contrasena)
-VALUES ('Usuario Prueba', 'usuario@correo.com', '987654321', MD5('password123'));
-
--- Login
-SELECT * FROM Usuarios
-WHERE correo = 'usuario@correo.com' AND contrasena = MD5('password123');
-
--- Logout
-DELETE FROM Sesiones
-WHERE id_usuario = 1;
+-- Trigger para garantizar consistencia en caso de cambio en precio o cantidad
+DELIMITER $$
+CREATE TRIGGER before_update_detallepedido
+BEFORE UPDATE ON DetallePedido
+FOR EACH ROW
+BEGIN
+    SET NEW.subtotal = NEW.precio * NEW.cantidad;
+END$$
+DELIMITER ;
