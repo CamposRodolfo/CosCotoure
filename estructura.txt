@@ -1,30 +1,45 @@
-COSCOTOUR
-├── project
-│   ├── assets
-│   │   ├── css
-│   │   │   ├── header.css
-│   │   │   └── styles.css
-│   │   ├── js
-│   │   │   ├── header.js
-│   │   │   └── script.js
-│   ├── components
-│   │   ├── alert.php
-│   │   ├── connect.php
-│   │   └── header.php
-│   ├── views
-│   ├── project_assets 
-│   │   ├── header 
-│   │   │   ├── help.svg 
-│   │   │   ├── logout.svg 
-│   │   │   ├── melissa.jpg 
-│   │   │   ├── message.svg
-│   │   │   ├── natalia.jpg
-│   │   │   ├── notification.svg
-│   │   │   ├── premium.svg
-│   │   │   ├── profile.svg
-│   │   │   ├── search.svg
-│   │   │   ├── settings.svg
-│   │   │   └── tutorials.svg
-│   │   └── uploaded_files
-└── .gitignore
-└── CosCotoure_db.sql
+/proyecto/
+│
+├── /public/                 # Archivos públicos accesibles desde el navegador.
+│   ├── /assets/             # Recursos estáticos como imágenes, CSS y JS.
+│   │   ├── /css/            # Archivos CSS.
+│   │   │   ├── styles.css   # Hoja de estilos principal.
+│   │   │   └── reset.css    # (Opcional) Reinicio de estilos.
+│   │   ├── /js/             # Archivos JavaScript.
+│   │   │   └── app.js       # Archivo principal JS.
+│   │   └── /images/         # Imágenes usadas en el proyecto.
+│   │       └── logo.png     # Ejemplo de archivo de imagen.
+│   └── index.php            # Página principal del sitio (punto de entrada).
+│
+├── /src/                    # Código fuente del backend y lógica del proyecto.
+│   ├── /controllers/        # Controladores para manejar la lógica de la aplicación.
+│   │   ├── userController.php
+│   │   └── productController.php
+│   ├── /models/             # Modelos para interactuar con la base de datos.
+│   │   ├── db.php           # Conexión a la base de datos.
+│   │   ├── userModel.php    # Modelo para la entidad "usuario".
+│   │   └── productModel.php # Modelo para la entidad "producto".
+│   ├── /views/              # Vistas dinámicas generadas por PHP.
+│   │   ├── header.php       # Encabezado común para todas las páginas.
+│   │   ├── footer.php       # Pie de página común para todas las páginas.
+│   │   └── home.php         # Página principal de contenido.
+│   └── routes.php           # Rutas principales para la navegación.
+│
+├── /config/                 # Configuración del proyecto.
+│   ├── database.php         # Configuración de la conexión a la base de datos.
+│   └── constants.php        # Constantes globales del proyecto.
+│
+├── /sql/                    # Archivos relacionados con la base de datos.
+│   ├── schema.sql           # Esquema de la base de datos.
+│   └── seed.sql             # Datos de prueba o iniciales.
+│
+├── /tests/                  # Pruebas unitarias o de integración.
+│   ├── integration/         # Pruebas de integración.
+│   └── unit/                # Pruebas unitarias.
+│
+├── .env                     # Archivo de variables de entorno (credenciales, claves).
+├── .gitignore               # Archivos y carpetas a ignorar por Git.
+├── composer.json            # Archivo de configuración para Composer (dependencias PHP).
+├── package.json             # Archivo de configuración para Node.js (dependencias JS).
+├── README.md                # Documentación del proyecto.
+└── LICENSE                  # Licencia del proyecto (opcional).
