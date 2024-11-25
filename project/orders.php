@@ -1,10 +1,6 @@
 <?php
+
 include 'components/connect.php';
-//registrado base de datos
-/* if (!isset($_SESSION['user_id'])) {
-   header('Location: login.php');
-   exit;
-} */
 
 if(isset($_COOKIE['user_id'])){
    $user_id = $_COOKIE['user_id'];
@@ -50,7 +46,7 @@ if(isset($_COOKIE['user_id'])){
    <div class="box" <?php if($fetch_order['status'] == 'canceled'){echo 'style="border:.2rem solid red";';}; ?>>
       <a href="view_order.php?get_id=<?= $fetch_order['id']; ?>">
          <p class="date"><i class="fa fa-calendar"></i><span><?= $fetch_order['date']; ?></span></p>
-         <img src="../project_assets/uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
+         <img src="uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
          <h3 class="name"><?= $fetch_product['name']; ?></h3>
          <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_order['price']; ?> x <?= $fetch_order['qty']; ?></p>
          <p class="status" style="color:<?php if($fetch_order['status'] == 'delivered'){echo 'green';}elseif($fetch_order['status'] == 'canceled'){echo 'red';}else{echo 'orange';}; ?>">

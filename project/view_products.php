@@ -16,10 +16,10 @@ if(isset($_POST['add_to_cart'])){
    $qty = $_POST['qty'];
    $qty = filter_var($qty, FILTER_SANITIZE_STRING);
    
-   $verify_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ? AND product_id = ?");   
+   $verify_cart = $conn->prepare("SELECT * FROM `Carros` WHERE user_id = ? AND product_id = ?");   
    $verify_cart->execute([$user_id, $product_id]);
 
-   $max_cart_items = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+   $max_cart_items = $conn->prepare("SELECT * FROM `Carros` WHERE user_id = ?");
    $max_cart_items->execute([$user_id]);
 
    if($verify_cart->rowCount() > 0){
@@ -32,7 +32,7 @@ if(isset($_POST['add_to_cart'])){
       $select_price->execute([$product_id]);
       $fetch_price = $select_price->fetch(PDO::FETCH_ASSOC);
 
-      $insert_cart = $conn->prepare("INSERT INTO `cart`(id, user_id, product_id, price, qty) VALUES(?,?,?,?,?)");
+      $insert_cart = $conn->prepare("INSERT INTO `Carros`(id, user_id, product_id, price, qty) VALUES(?,?,?,?,?)");
       $insert_cart->execute([$id, $user_id, $product_id, $fetch_price['price'], $qty]);
       $success_msg[] = '¡Añadido al carrito!';
    }
@@ -71,7 +71,7 @@ if(isset($_POST['add_to_cart'])){
          while($fetch_prodcut = $select_products->fetch(PDO::FETCH_ASSOC)){
    ?>
    <form action="" method="POST" class="box">
-      <img src="../project_assets/uploaded_files/<?= $fetch_prodcut['image']; ?>" class="image" alt="">
+      <img src="uploaded_files/<?= $fetch_prodcut['image']; ?>" class="image" alt="">
       <h3 class="name"><?= $fetch_prodcut['name'] ?></h3>
       <input type="hidden" name="product_id" value="<?= $fetch_prodcut['id']; ?>">
       <div class="flex">

@@ -27,7 +27,7 @@ if(isset($_POST['place_order'])){
    $method = $_POST['method'];
    $method = filter_var($method, FILTER_SANITIZE_STRING);
 
-   $verify_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+   $verify_cart = $conn->prepare("SELECT * FROM `Carros` WHERE user_id = ?");
    $verify_cart->execute([$user_id]);
    
    if(isset($_GET['get_id'])){
@@ -54,7 +54,7 @@ if(isset($_POST['place_order'])){
       }
 
       if($insert_order){
-         $delete_cart_id = $conn->prepare("DELETE FROM `cart` WHERE user_id = ?");
+         $delete_cart_id = $conn->prepare("DELETE FROM `Carros` WHERE user_id = ?");
          $delete_cart_id->execute([$user_id]);
          header('location:orders.php');
       }
@@ -138,7 +138,7 @@ if(isset($_POST['place_order'])){
                while($fetch_get = $select_get->fetch(PDO::FETCH_ASSOC)){
          ?>
          <div class="flex">
-            <img src="../project_assets/uploaded_files/<?= $fetch_get['image']; ?>" class="image" alt="">
+            <img src="uploaded_files/<?= $fetch_get['image']; ?>" class="image" alt="">
             <div>
                <h3 class="name"><?= $fetch_get['name']; ?></h3>
                <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_get['price']; ?> x 1</p>
@@ -147,7 +147,7 @@ if(isset($_POST['place_order'])){
          <?php
                }
             }else{
-               $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+               $select_cart = $conn->prepare("SELECT * FROM `Carros` WHERE user_id = ?");
                $select_cart->execute([$user_id]);
                if($select_cart->rowCount() > 0){
                   while($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)){
@@ -160,7 +160,7 @@ if(isset($_POST['place_order'])){
             
          ?>
          <div class="flex">
-            <img src="../project_assets/uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
+            <img src="uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
             <div>
                <h3 class="name"><?= $fetch_product['name']; ?></h3>
                <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_product['price']; ?> x <?= $fetch_cart['qty']; ?></p>

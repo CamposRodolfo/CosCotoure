@@ -1,23 +1,12 @@
-
 <?php
 
 include 'components/connect.php';
-//registrado base de datos
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
-    exit;
-}
-
 
 if(isset($_COOKIE['user_id'])){
    $user_id = $_COOKIE['user_id'];
 }else{
    setcookie('user_id', create_unique_id(), time() + 60*60*24*30);
 }
-
-
-
 
 if(isset($_POST['update_cart'])){
 
@@ -26,7 +15,7 @@ if(isset($_POST['update_cart'])){
    $qty = $_POST['qty'];
    $qty = filter_var($qty, FILTER_SANITIZE_STRING);
 
-   $update_qty = $conn->prepare("UPDATE `cart` SET qty = ? WHERE id = ?");
+   $update_qty = $conn->prepare("UPDATE `Carros` SET qty = ? WHERE id = ?");
    $update_qty->execute([$qty, $cart_id]);
 
    $success_msg[] = '¡Cantidad actualizada en el carrito!';
@@ -42,7 +31,7 @@ if(isset($_POST['delete_item'])){
    $verify_delete_item->execute([$cart_id]);
 
    if($verify_delete_item->rowCount() > 0){
-      $delete_cart_id = $conn->prepare("DELETE FROM `cart` WHERE id = ?");
+      $delete_cart_id = $conn->prepare("DELETE FROM `Carros` WHERE id = ?");
       $delete_cart_id->execute([$cart_id]);
       $success_msg[] = '¡Artículo eliminado del carrito!';
    }else{
@@ -93,7 +82,7 @@ if(isset($_POST['empty_cart'])){
 
    <?php
       $grand_total = 0;
-      $select_cart = $conn->prepare("SELECT * FROM `cart` WHERE user_id = ?");
+      $select_cart = $conn->prepare("SELECT * FROM `Carros` WHERE user_id = ?");
       $select_cart->execute([$user_id]);
       if($select_cart->rowCount() > 0){
          while($fetch_cart = $select_cart->fetch(PDO::FETCH_ASSOC)){
@@ -106,7 +95,7 @@ if(isset($_POST['empty_cart'])){
    ?>
    <form action="" method="POST" class="box">
       <input type="hidden" name="cart_id" value="<?= $fetch_cart['id']; ?>">
-      <img src="../project_assets/uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
+      <img src="uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
       <h3 class="name"><?= $fetch_product['name']; ?></h3>
       <div class="flex">
          <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_cart['price']; ?></p>
