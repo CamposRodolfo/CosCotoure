@@ -1,0 +1,30 @@
+COSCOTOUR
+├── project
+│   ├── assets
+│   │   ├── css
+│   │   │   ├── header.css
+│   │   │   └── styles.css
+│   │   ├── js
+│   │   │   ├── header.js
+│   │   │   └── script.js
+│   ├── components
+│   │   ├── alert.php
+│   │   ├── connect.php
+│   │   └── header.php
+│   ├── views
+│   ├── project_assets 
+│   │   ├── header 
+│   │   │   ├── help.svg 
+│   │   │   ├── logout.svg 
+│   │   │   ├── melissa.jpg 
+│   │   │   ├── message.svg
+│   │   │   ├── natalia.jpg
+│   │   │   ├── notification.svg
+│   │   │   ├── premium.svg
+│   │   │   ├── profile.svg
+│   │   │   ├── search.svg
+│   │   │   ├── settings.svg
+│   │   │   └── tutorials.svg
+│   │   └── uploaded_files
+└── .gitignore
+└── CosCotoure_db.sql
