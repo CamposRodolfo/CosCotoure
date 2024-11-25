@@ -1,0 +1,87 @@
+[
+    {
+        "nombre_producto": "Camiseta Roja",
+        "precio": 20.99,
+        "imagen_producto": "https://marinaracewear.com/storage/media/attributes/9/0/8/6/6/90866/conversions/2-category.jpg",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Camiseta Blanca",
+        "precio": 25.99,
+        "imagen_producto": "https://marinaracewear.com/storage/media/attributes/8/7/5/3/9/87539/conversions/1-category.jpg",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Mao Pro Team",
+        "precio": 29.99,
+        "imagen_producto": "https://marinaracewear.com/storage/media/views/1/1/3/9/9/3/113993/MAO-FRONT-WEB.png",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Zapatillas Nike Air Max",
+        "precio": 120.00,
+        "imagen_producto": "https://media.istockphoto.com/id/1417090656/es/foto/zapatilla-de-cuero-blanco.jpg?s=1024x1024&w=is&k=20&c=p30mZBO3t1tuklfNTEyAYz0RZjhxuO7heTs1lGF1GPs=",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Sudadera Adidas con Capucha",
+        "precio": 59.99,
+        "imagen_producto": "https://www.adidas.com.mx/media/w_640,h_640,f_auto/ayMKLRFPkcDd0os34fpg.jpg",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Levi's 501",
+        "precio": 55.00,
+        "imagen_producto": "https://www.pexels.com/es-es/foto/par-de-zapatillas-azules-con-cordones-19090/",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Chaqueta de Cuero Negra",
+        "precio": 89.99,
+        "imagen_producto": "https://images.pexels.com/photos/1460036/pexels-photo-1460036.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Pantalones Cargo Masculinos",
+        "precio": 35.00,
+        "imagen_producto": "https://www.pexels.com/es-es/foto/persona-piernas-patas-pantalones-11716436/",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Botines Timberland",
+        "precio": 150.00,
+        "imagen_producto": "https://www.pexels.com/es-es/foto/suelo-molido-botas-vista-superior-23319175/",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Shoes Puma Rosa",
+        "precio": 49.99,
+        "imagen_producto": "https://www.pexels.com/es-es/foto/zapatos-silla-zapatillas-puma-6748334/",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Polo Ralph Lauren",
+        "precio": 85.00,
+        "imagen_producto": "https://images.pexels.com/photos/28640734/pexels-photo-28640734/free-photo-of-retrato-de-un-hombre-vestido-con-un-traje-de-polo-ralph-lauren.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Zapatillas Reebok Classic",
+        "precio": 75.00,
+        "imagen_producto": "https://images.pexels.com/photos/13566363/pexels-photo-13566363.jpeg?auto=compress&cs=tinysrgb&w=600",
+        "creado_por": 1
+    },
+    {
+        "nombre_producto": "Zapatillas Reebok ",
+        "precio": 19.99,
+        "imagen_producto": "https://www.pexels.com/es-es/foto/zapatillas-blancas-de-pie-sobre-una-manta-en-una-cama-20244251/",
+        "creado_por": 1
+    },
+    
+    {
+        "nombre_producto": "Cinturón de Cuero Negro",
+        "precio": 25.00,
+        "imagen_producto": "https://www.pexels.com/es-es/foto/moda-traje-modelo-maqueta-4937224/",
+        "creado_por": 1
+    }
+]
