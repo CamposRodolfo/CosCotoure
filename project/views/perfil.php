@@ -116,7 +116,7 @@ if (isset($_POST['place_order'])) {
                <input type="number" name="pin_code" required maxlength="6" placeholder="Ej. 123456" class="input" min="0" max="999999" <?php echo'value="'.$_SESSION['codigo_postal'].'"'?>>
             </div>
          </div>
-         <input type="submit" value="realizar pedido" name="place_order" class="btn">
+         <input type="submit" value="Actualizar Datos" name="place_order" class="btn">
       </form>
     </div>
 </section>

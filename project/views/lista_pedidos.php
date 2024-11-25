@@ -2,6 +2,8 @@
 
 include '../components/connect.php';
 
+$id_usuario = $_SESSION['id_usuario'];
+
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +31,7 @@ include '../components/connect.php';
 
    <?php
       $select_orders = $conn->prepare("SELECT * FROM Pedidos WHERE id_usuario = ? ORDER BY actualizado_en DESC");
-      $select_orders->execute([$_SESSION['id_usuario']]);
+      $select_orders->execute([$id_usuario]);
       if($select_orders->rowCount() > 0){
          while($fetch_order = $select_orders->fetch(PDO::FETCH_ASSOC)){
             $select_product = $conn->prepare("SELECT * FROM Productos WHERE id_producto = ?");
