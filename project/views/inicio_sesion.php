@@ -41,9 +41,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
     if ($get_user->rowCount() > 0) {
         $user = $get_user->fetch(PDO::FETCH_ASSOC);
         if (password_verify($password, $user['contrasena'])) {
-            $_SESSION['user_id'] = $user['id_usuario'];
+            $_SESSION['id_usuario'] = $user['id_usuario'];
             $_SESSION['nombre_usuario'] = $user['nombre'];
             $_SESSION['correo_usuario'] = $user['correo'];
+ 
+            $_SESSION['telefono'] = $user['telefono'];
+            $_SESSION['direccion1'] = $user['direccion1'];
+            $_SESSION['direccion2'] = $user['direccion2'];
+            $_SESSION['ciudad'] = $user['ciudad'];
+            $_SESSION['pais'] = $user['pais'];
+
+            $_SESSION['codigo_postal'] = $user['codigo_postal'];
+            $_SESSION['metodo_pago'] = $user['metodo_pago'];
+            $_SESSION['tipo_direccion'] = $user['tipo_direccion'];
+            
+            $_SESSION['tipo_usuario'] = $user['tipo_usuario'];
+            $_SESSION['creado_en'] = $user['creado_en'];
+            $_SESSION['actualizado_en'] = $user['actualizado_en'];
             header('Location: agregar_producto.php'); // Redirigir al dashboard
             exit;
         }
