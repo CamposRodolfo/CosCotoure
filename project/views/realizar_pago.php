@@ -35,7 +35,7 @@ if(isset($_POST['place_order'])){
             /* Verificar con los atributos de las tablas Pedidos y DetallePedido de la base de datos */
             $insert_order = $conn->prepare("INSERT INTO Pedidos(id_usuario, name, number, email, address, address_type, method, id_producto, precio, cantidad) VALUES(?,?,?,?,?,?,?,?,?,?)");
             $insert_order->execute([$id_usuario, $name, $number, $email, $address, $address_type, $method, $fetch_p['id'], $fetch_p['precio'], 1]);
-            header('location:lista_predidos.php');
+            header('location:lista_pedidos.php');
          }
       }else{
          $warning_msg[] = '¡Algo salió mal!';
@@ -136,9 +136,9 @@ if(isset($_POST['place_order'])){
                while($fetch_get = $select_get->fetch(PDO::FETCH_ASSOC)){
          ?>
          <div class="flex">
-            <img src="uploaded_files/<?= $fetch_get['image']; ?>" class="image" alt="">
+            <img src="../assets/img/archivos_subidos/<?= $fetch_get['imagen_producto']; ?>" class="image" alt="">
             <div>
-               <h3 class="name"><?= $fetch_get['name']; ?></h3>
+               <h3 class="name"><?= $fetch_get['nombre_producto']; ?></h3>
                <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_get['precio']; ?> x 1</p>
             </div>
          </div>
