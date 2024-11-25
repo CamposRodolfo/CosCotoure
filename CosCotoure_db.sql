@@ -7,6 +7,7 @@ CREATE TABLE Usuarios (
     id_usuario INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     correo VARCHAR(100) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL,
     telefono VARCHAR(20),
     direccion1 VARCHAR(255),
     direccion2 VARCHAR(255),
@@ -15,18 +16,9 @@ CREATE TABLE Usuarios (
     codigo_postal VARCHAR(20),
     metodo_pago VARCHAR(50),
     tipo_direccion VARCHAR(50),
-    contrasena VARCHAR(255) NOT NULL,
+    tipo_usuario ENUM('usuario', 'administrador') DEFAULT 'usuario',
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- Tabla de Administradores
-CREATE TABLE Administradores (
-    id_admin INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    correo VARCHAR(100) UNIQUE NOT NULL,
-    contrasena VARCHAR(255) NOT NULL,
-    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Tabla de Productos
@@ -36,7 +28,7 @@ CREATE TABLE Productos (
     precio DECIMAL(10, 2) NOT NULL,
     imagen_producto VARCHAR(255),
     creado_por INT,
-    FOREIGN KEY (creado_por) REFERENCES Administradores(id_admin),
+    FOREIGN KEY (creado_por) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE,
     creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -44,10 +36,16 @@ CREATE TABLE Productos (
 -- Tabla de Tallas (relación con Productos)
 CREATE TABLE Tallas (
     id_talla INT AUTO_INCREMENT PRIMARY KEY,
-    id_producto INT,
     talla VARCHAR(10) NOT NULL,
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE Inventario (
+    id_inventario INT AUTO_INCREMENT PRIMARY KEY,
+    id_producto INT,
+    id_talla INT,
     stock INT DEFAULT 0,
     FOREIGN KEY (id_producto) REFERENCES Productos(id_producto) ON DELETE CASCADE
+    FOREIGN KEY (id_talla) REFERENCES Tallas(id_talla) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Tabla de Pedidos
@@ -85,17 +83,17 @@ CREATE TABLE Sesiones (
 )ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Tabla del Carro de Compras
-CREATE TABLE `Carros` (
-  `id` varchar(20) NOT NULL,
-  `user_id` varchar(20) NOT NULL,
-  `product_id` varchar(20) NOT NULL,
-  `price` varchar(10) NOT NULL,
-  `qty` varchar(2) NOT NULL DEFAULT '1'
+CREATE TABLE CarroCompras (
+  id_carro varchar(20) NOT NULL,
+  id_usuario varchar(20) NOT NULL,
+  id_producto varchar(20) NOT NULL,
+  subtotal varchar(10) NOT NULL,
+  cantidad varchar(2) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Consultas adicionales para funcionalidades
--- Crear los administradores
-INSERT INTO Administradores (nombre, correo, contrasena)
+-- Crear Usuarios genericos
+INSERT INTO Usuarios (nombre, correo, contrasena)
 VALUES 
 ('Rodolfo Campos', 'rodolfo.campos1@utp.ac.pa', MD5('admin123')),
 ('Adrina Achurra', 'adriana.achurra@utp.ac.pa', MD5('admin123')),
@@ -103,16 +101,6 @@ VALUES
 ('Paola Quiñones', 'paola.quinones@utp.ac.pa', MD5('admin123')),
 ('Gabriel Ruiz', 'gabriel.ruiz1@utp.ac.pa', MD5('admin123')), 
 ('Steven Guerra', 'steven.guerra1@utp.ac.pa', MD5('admin123'));
-
--- Crear Usuarios genericos
-INSERT INTO Usuarios (nombre, correo, contrasena)
-VALUES 
-('Rodolfo Campos', 'rodolfo.campos1@gmail.com', MD5('admin123')),
-('Adrina Achurra', 'adriana.achurra@gmail.com', MD5('admin123')),
-('Victor Arrocha', 'victor.arrocha1@gmail.com', MD5('admin123')),
-('Paola Quiñones', 'paola.quinones@gmail.com', MD5('admin123')),
-('Gabriel Ruiz', 'gabriel.ruiz1@gmail.com', MD5('admin123')), 
-('Steven Guerra', 'steven.guerra@gmail.com', MD5('admin123'));
 
 -- Crear un producto con tallas
 INSERT INTO Productos (nombre_producto, precio, imagen_producto, creado_por)
