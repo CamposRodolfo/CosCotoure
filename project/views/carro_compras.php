@@ -90,9 +90,9 @@ if(isset($_POST['empty_cart'])){
       
    ?>
    <form action="" method="POST" class="box">
-      <input type="hidden" name="id_carro" value="<?= $fetch_cart['id']; ?>">
-      <img src="uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
-      <h3 class="name"><?= $fetch_product['name']; ?></h3>
+      <input type="hidden" name="id_carro" value="<?= $fetch_cart['id_carro']; ?>">
+      <img src="../assets/img/archivos_subidos/<?= $fetch_product['imagen_producto']; ?>" class="image" alt="">
+      <h3 class="name"><?= $fetch_product['nombre_producto']; ?></h3>
       <div class="flex">
          <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_cart['precio']; ?></p>
          <input type="number" name="cantidad" required min="1" value="<?= $fetch_cart['cantidad']; ?>" max="99" maxlength="2" class="cantidad">
@@ -121,7 +121,7 @@ if(isset($_POST['empty_cart'])){
          <form action="" method="POST">
           <input type="submit" value="vaciar carrito" name="empty_cart" class="delete-btn" onclick="return confirm('¿Vaciar tu carrito?');">
          </form>
-         <a href="checkout.php" class="btn">proceder a la compra</a>
+         <a href="realizar_pago.php" class="btn">proceder a la compra</a>
       </div>
    <?php } ?>
 

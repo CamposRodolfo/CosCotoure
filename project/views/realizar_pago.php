@@ -158,9 +158,9 @@ if(isset($_POST['place_order'])){
             
          ?>
          <div class="flex">
-            <img src="uploaded_files/<?= $fetch_product['image']; ?>" class="image" alt="">
+            <img src="../assets/img/archivos_subidos/<?= $fetch_product['imagen_producto']; ?>" class="image" alt="">
             <div>
-               <h3 class="name"><?= $fetch_product['name']; ?></h3>
+               <h3 class="name"><?= $fetch_product['nombre_producto']; ?></h3>
                <p class="price"><i class="fas fa-dollar-sign"></i> <?= $fetch_product['precio']; ?> x <?= $fetch_cart['cantidad']; ?></p>
             </div>
          </div>
